@@ -12,6 +12,7 @@ gh secret set MYSQL_USER --env dev --body "istory"
 gh secret set MYSQL_PASSWORD --env dev --body "user12345"
 gh secret set AWS_ACCESS_KEY_ID --env dev --body "xxxxx"
 gh secret set AWS_SECRET_ACCESS_KEY --env dev --body "xxxxx"
+gh secret set AWS_S3_BUCKET --env dev --body "istory-deploy-bucket-108782086806"
 
 # prd
 gh secret set DATABASE_URL --env prd --body "jdbc:mysql://xx.com:3306/istory"
