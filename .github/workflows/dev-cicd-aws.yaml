@@ -11,9 +11,9 @@ on:
   pull_request:
     branches: [ "develop" ]
 jobs:
-  verify_pipeline:
-    runs-on: ubuntu-latest
-    environment: runner
+  # verify_pipeline:
+  #   runs-on: ubuntu-latest
+  #   environment: runner
     # services:
     #   mysql:
     #     image: mysql:8.0
@@ -33,7 +33,7 @@ jobs:
     #       --health-interval=10s
     #       --health-timeout=5s
     #       --health-retries=3
-    steps:
+    # steps:
       # - name: 소스코드 다운로드
       #   uses: actions/checkout@v4 
 
@@ -92,14 +92,14 @@ jobs:
       #       **/build/test-results/test/
       #     retention-days: 30 
 
-      - name: 기본 수행정보 Step Summary 에 표시
-        run: |
-          echo "## 워크플로우 실행 정보 요약" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "* 실행 담당자: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
-          echo "* 실행 이벤트: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "* 실행 저장소: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-          echo "* 실행 브랜치: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
+      # - name: 기본 수행정보 Step Summary 에 표시
+      #   run: |
+      #     echo "## 워크플로우 실행 정보 요약" >> $GITHUB_STEP_SUMMARY
+      #     echo "" >> $GITHUB_STEP_SUMMARY
+      #     echo "* 실행 담당자: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+      #     echo "* 실행 이벤트: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+      #     echo "* 실행 저장소: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+      #     echo "* 실행 브랜치: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
 
       # # check style
       # - name: 코드 컨벤션 규칙 검사
