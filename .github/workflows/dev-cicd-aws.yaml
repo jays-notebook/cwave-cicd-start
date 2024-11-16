@@ -37,6 +37,36 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: change application.yml
+        run: |
+          cat > src/main/resources/application.yml << EOF
+          spring:
+            datasource:
+              url: ${{ secrets.DATABASE_URL }} # 예dbc:mysql://localhost:3306/istory
+              username: ${{ secrets.MYSQL_USER }}
+              password: ${{ secrets.MYSQL_PASSWORD }}
+              driver-class-name: com.mysql.cj.jdbc.Driver
+            jpa:
+              database-platform: org.hibernate.dialect.MySQL8Dialect
+              hibernate:
+                ddl-auto: update
+              show-sql: true
+            application:
+              name: USER-SERVICE
+            jwt:
+              issuer: user@gmail.com
+              secret_key: study-springboot
+          management:
+            endpoints:
+              web:
+                exposure:
+                  include: health,info
+            endpoint:
+              health:
+                show-details: always
+          EOF
+          
       - name: 테스트 수행
         run: ./gradlew test
 
@@ -55,3 +85,12 @@ jobs:
             **/build/reports/tests/test/
             **/build/test-results/test/
           retention-days: 30 
+
+      - name: 기본 수행정보 Step Summary 에 표시
+        run: |
+          echo "## 워크플로우 실행 정보 요약" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "* 실행 담당자: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "* 실행 이벤트: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "* 실행 저장소: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "* 실행 브랜치: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
