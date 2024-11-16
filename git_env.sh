@@ -1,3 +1,4 @@
+gh secret set DATABASE_URL --env runner --body "jdbc:mysql://localhost:3306/istory"
 gh secret set MYSQL_DATABASE --env runner --body "istory"
 gh secret set MYSQL_USER --env runner --body "istory"
 gh secret set MYSQL_PASSWORD --env runner --body "user12345"
